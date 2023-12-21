@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
 import Customer from './components/Customer'
 import './App.css';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({
+  root: {
+    width:'90%',
+    marginTop: theme.spacing.unit * 3,
+    marginLeft: 20,
+    marginRight: 20,
+    overflowX: "auto",
+    align: 'center'
+  },
+  table: {
+    minWith: "auto",
+    align: 'center'
+  },
+  progress: {
+    margin:theme.spacing.unit * 2
+  }
+});
 
 
 class App extends Component {
 
   state = {
-    customers: ""
+    customers: "",
+    completed: 0
   }
 
   componentDidMount() {
+      this.timer = setInterval(this.progress, 20);
       this.callApi()
         .then(res => this.setState({customers: res}))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err));     
   }
 
   callApi = async () => {
@@ -26,10 +50,16 @@ class App extends Component {
     return body;
   }
 
+  progress = () => {
+    const { completed } = this.state;
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
+  }
+
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <Table>
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
           <TableHead>
           <TableRow>
               <TableCell>번호</TableCell>
@@ -44,11 +74,18 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.customers ? this.state.customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} gender={c.gender} birthday={c.birthday} momname={c.momname} phonenumber={c.phonenumber} address={c.address} time={c.time}/>);
-            }) : ""}
+            {this.state.customers ? this.state.customers.map(c => {
+              return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} gender={c.gender} birthday={c.birthday} momname={c.momname} phonenumber={c.phonenumber} address={c.address} time={c.time}/>);
+            }) : 
+            <TableRow>
+              <TableCell colspan="6" align="center">
+                <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
+              </TableCell>
+            </TableRow>
+            }
           </TableBody>
-        </Table>          
-      </div>      
+        </Table>
+      </Paper>            
     );   
   }
 }
@@ -76,4 +113,4 @@ class App extends Component {
 //  }
 //}
 
-export default App;
+export default withStyles(styles)(App);
