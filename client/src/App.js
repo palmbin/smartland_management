@@ -14,7 +14,8 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     width:'90%',
-    marginTop: theme.spacing.unit * 3,
+    // marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     marginLeft: 20,
     marginRight: 20,
     overflowX: "auto",
@@ -25,7 +26,8 @@ const styles = theme => ({
     align: 'center'
   },
   progress: {
-    margin:theme.spacing.unit * 2
+    //margin:theme.spacing.unit * 2
+    marginTop: theme.spacing(2)
   }
 });
 
@@ -75,10 +77,10 @@ class App extends Component {
           </TableHead>
           <TableBody>
             {this.state.customers ? this.state.customers.map(c => {
-              return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} gender={c.gender} birthday={c.birthday} momname={c.momname} phonenumber={c.phonenumber} address={c.address} time={c.time}/>);
+              return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} gender={c.gender} birthday={c.birthday} momname={c.momname} phonenumber={c.phonenumber} address={c.address} posttime={c.posttime}/>);
             }) : 
             <TableRow>
-              <TableCell colspan="6" align="center">
+              <TableCell colSpan="6" align="center">
                 <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
               </TableCell>
             </TableRow>

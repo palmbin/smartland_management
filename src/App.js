@@ -17,7 +17,7 @@ const customers = [{
   'gender' : '남자',
   'address' : '서울특별시 강남구 도곡동',
   'phonenumber' : '010-1111-1111',
-  'time' : '2023-12-01 00:00:00'
+  'posttime' : '2023-12-01 00:00:00'
 },
 {
   'id' : 2,
@@ -29,7 +29,7 @@ const customers = [{
   'gender' : '여자',
   'address' : '강원도 강릉시 율곡로 3139번길 24',
   'phonenumber' : '010-2222-2222',
-  'time' : '2023-12-02 00:00:00'
+  'posttime' : '2023-12-02 00:00:00'
 },
 {
   'id' : 3,
@@ -41,7 +41,7 @@ const customers = [{
   'gender' : '남자',
   'address' : '서울특별시 종로구 관훈동',
   'phonenumber' : '010-3333-3333',
-  'time' : '2023-12-03 00:00:00'
+  'posttime' : '2023-12-03 00:00:00'
 },
 {
   'id' : 4,
@@ -53,7 +53,7 @@ const customers = [{
   'gender' : '남자',
   'address' : '경상북도 안동시 도산면 온혜리',
   'phonenumber' : '010-1111-5555',
-  'time' : '2023-12-04 00:00:00'
+  'posttime' : '2023-12-04 00:00:00'
 }
 ]
 
@@ -76,7 +76,7 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} momname={c.momname} birthday={c.birthday} gender={c.gender} address={c.address} phonenumber={c.phonenumber} time={c.time}/>);})}
+            {customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} momname={c.momname} birthday={c.birthday} gender={c.gender} address={c.address} phonenumber={c.phonenumber} posttime={c.posttime}/>);})}
           </TableBody>
         </Table>          
       </div>      

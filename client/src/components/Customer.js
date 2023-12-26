@@ -14,7 +14,7 @@ class Customer extends React.Component {
                 <TableCell>{this.props.momname}</TableCell>
                 <TableCell>{this.props.phonenumber}</TableCell>
                 <TableCell>{this.props.address}</TableCell>
-                <TableCell>{this.props.time}</TableCell>
+                <TableCell>{this.props.posttime}</TableCell>
             </TableRow>           
         )
     }
